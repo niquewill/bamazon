@@ -72,31 +72,60 @@ function select(){
 	
 	inquirer.prompt([
         {
-	        name: "id",
+	        name: "np", /*number purchased*/
             type: "input",
 	        message: "What is the item Item ID number you would like to buy?"
 	    }, {
 	    	name: "units",
             type: "input",
 	    	message: "How many units of the item would you like to buy?"
-	    
-	    }]).then(function (answers){
+        }, {
+            name: "vf", /*verifying*/
+            type: "confirm",
+            question: "I am just verifying that you are requesting Item Number"+  itemSelect + "?"
+        }, {
+            name: "style", /*style*/
+            type: "confirm",
+            question: "Am I also correct that you are requesting " + numSelect + this.productStyle + "?"
+            //stockCheck();
+        }]).then(function (answers, main)
+            {
+          
+        
 	    	
 	    	//Assign input to variables
-	    	var itemSelect = answers.id;
+	    	var itemSelect = answers.np;
 	    	var numSelect = answers.units;
-
+                this.productStyle = main.Product_Name;
+        
 //	    	//Go to itemCheck
-	    stockCheck(itemSelect, numSelect);
-            
-            console.log("You want "+ itemSelect + "x");
-            console.log("_____________");
-	    });
-	   // stockCheck();
+	    select(itemSelect, numSelect);
+  });
+    
 }
+function select(){
+    
+    inquirer.prompt([
+        {
+            name: "vf", /*verifying*/
+            type: "confirm",
+            question: "I am just verifying that you are requesting Item Number"+  itemSelect + "?"
+        }, {
+            name: "vf", /*verifying*/
+            type: "confirm",
+            question: "Am I also correct that you are requesting " + numSelect + productStyle + "?"
+        //             stockCheck();
+        }]);
+                stockCheck();
+}            
+//            console.log("I am just verifying that you are requesting Item Number"+  itemSelect);
+//            console.log("_____________");
+//	    });
+//    
+//	    stockCheck();
+//}
 //See if enough items are in stock to fulfill order
-function stockCheck(itemSelect, numSelect){
-
+function stockCheck(){
 	//Connect to DB to look at all Products
 	        connection.query('SELECT * FROM Products WHERE Item_ID='+itemSelect, 
                 function(err, res) {
@@ -110,14 +139,14 @@ function stockCheck(itemSelect, numSelect){
  	    	         console.log("_____________");
         
                 if(err) throw err;
-		
+//		
 			//Loop through all items
-			for (var i = 0; i < res.length; i++){
-
-				
-				
+			//for (var i = 0; i > res.length; i++){
+//
+//				
+//				
 				//Find the itemID user selected
-				if(numSelect > ItemUp.Item_ID){
+				if(numSelect == res[i]. ItemUp.Item_ID){
 					
                     
 					//Set the current stock
@@ -154,7 +183,7 @@ function stockCheck(itemSelect, numSelect){
 							{Item_ID: itemSelect}], function(err, res){});
 
 							//Set the total cost
-							var total = ItemUp.price * numSelect;
+							var total = price * numSelect;
 
 							console.log("Thank you for purchasing " + "'" + product + "'! Your total comes to $" + total + ".");
                         
@@ -184,10 +213,10 @@ function stockCheck(itemSelect, numSelect){
  			                        }
  
 																//Go back to main
-																	main.end()
+																	main.end();
 											});
-            		};
+            		}
             }
-    }
+//    
 	});
-};
+}
