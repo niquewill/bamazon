@@ -2,7 +2,6 @@
 var mysql = require('mysql');
 var inquirer = require('inquirer');
 
-function DB() {
 //MySql connection
 var connection = mysql.createConnection({
 	host: "localhost",
@@ -11,8 +10,6 @@ var connection = mysql.createConnection({
 	password: "N0b0ndag3G0d",
 	database: "bamazon_db"
 });
-
-}
 
 //Initial verification of if the customer wants to purchase
 inquirer.prompt(
