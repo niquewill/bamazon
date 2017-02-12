@@ -12,38 +12,7 @@ var connection = mysql.createConnection({
 	database: "bamazon_db"
 });
 
-    return connection;
 }
-
-app.post("/bamazonl_db", function(req, res) {
-    var objBD = BD();
-
-    var items = {
-        product_name: req.body.product_name,
-        department_name: req.body.department_name,
-        price: req.body.price,
-        stock_quantity: req.body.stock_quantity
-        
-        
-    };
-
-    objBD.query('INSERT INTO products VALUES ?', items, function(error) {
-        if (error) {
-            console.log(error.message);
-        } else {
-            console.log('success');    
-        }
-    });
-});
-
-console.log("WELCOME TO BAMAZON!\nWe Make Shopping A Ba Ba Blast! !");
-
-//checking connection to mysql to ensure theres no errors.  
-
-connection.connect(function(err) {
-	if(err) throw err;
-		console.log("Connected as ID: " + connection.threadId);
-});
 
 //Initial verification of if the customer wants to purchase
 inquirer.prompt(
