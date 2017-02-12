@@ -1,0 +1,28 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "This project uses Node and Inquirer in addition with a MySQL database to create an \"Amazon-like\" shopping interface. The most challenging part of this activity was learning how to update MySQL with the changes in inventory. I did learn how to console log text on two lines.  Thank you Code Academy!",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/niquewill"
+  },
+  "keywords": [
+    "Node",
+    "NPM",
+    "Inquirer",
+    "SQL",
+    "MySQL",
+    "Monique",
+    "Hawkins"
+  ],
+  "author": "Monique Hawkins",
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^3.0.1",
+    "mysql": "^2.13.0"
+  }
+}
